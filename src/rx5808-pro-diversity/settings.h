@@ -33,9 +33,9 @@ SOFTWARE.
 //
 // =============================================================================
 
-//#define FENIX_QUADVERSITY
+#define FENIX_QUADVERSITY
 
-#define REALACC_RX5808_PRO_PLUS_OSD
+//#define REALACC_RX5808_PRO_PLUS_OSD
 
 // === Display Module ==========================================================
 //

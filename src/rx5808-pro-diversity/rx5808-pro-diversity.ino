@@ -53,8 +53,12 @@ static void globalMenuButtonHandler(
   Buttons::PressType pressType
 );
 
+uint16_t currentTime = 0;
+uint16_t lastTime = 0;  
+  
 void setup()
 {
+  Serial.begin(9600); 
   
   EepromSettings.load();
 
@@ -202,6 +206,10 @@ void setupPins() {
 }
 
 void loop() {
+
+  currentTime = millis();
+  Serial.println(currentTime - lastTime);
+  lastTime = currentTime;
   
   Buttons::update();
   Receiver::update();
