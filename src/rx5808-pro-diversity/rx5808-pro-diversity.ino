@@ -53,8 +53,8 @@ static void globalMenuButtonHandler(
   Buttons::PressType pressType
 );
 
-uint16_t currentTime = 0;
-uint16_t lastTime = 0;  
+uint16_t n = 0;
+uint32_t lastTime = 0;  
   
 void setup()
 {
@@ -207,9 +207,14 @@ void setupPins() {
 
 void loop() {
 
-  currentTime = millis();
-  Serial.println(currentTime - lastTime);
-  lastTime = currentTime;
+  n++;
+  if ( (millis() - lastTime) >= 1000 ) {
+    Serial.print(n);
+    Serial.println(" Hz");
+    lastTime = millis();
+    n = 0;
+  }
+  
   
   Buttons::update();
   Receiver::update();
