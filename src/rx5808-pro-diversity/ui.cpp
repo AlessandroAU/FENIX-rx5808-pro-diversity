@@ -26,6 +26,9 @@ namespace Ui {
 
     void setup() {
         #ifdef OLED_128x64_ADAFRUIT_SCREENS  
+
+          Wire.setClock(400000);
+          
           display.begin(SSD1306_SWITCHCAPVCC, 0x3C); 
           display.setTextColor(WHITE);
           display.setTextSize(1);
@@ -35,7 +38,8 @@ namespace Ui {
           update(); 
         #endif
         
-        TV.begin(SC_256x192); // tone will not work until begin is called.
+//        TV.begin(SC_256x192); // tone will not work until begin is called.
+        TV.begin(SC_448x108);
         TV.end();    
     }
 
@@ -45,7 +49,8 @@ namespace Ui {
         
         display.ssd1306_command(SSD1306_DISPLAYOFF);  
         
-        TV.begin(SC_256x192);
+//        TV.begin(SC_256x192);
+        TV.begin(SC_448x108);
 
         Ui::sdToTtvout(); 
         
@@ -73,7 +78,8 @@ namespace Ui {
       for(int y=0; y<64; y++) {
         for(int x=0; x<128; x++) {            
           bool colour = display.getPixel(x,y);
-          TV.draw_rect(x*2, y*3, 2, 3, colour, colour);          
+//          TV.draw_rect(x*2, y*3, 2, 3, colour, colour);
+          TV.draw_rect(32+x*3, 22+y, 3, 1, colour, colour);         
         }
       }      
     }
